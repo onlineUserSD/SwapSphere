@@ -35,7 +35,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - Flask API (Recommendation System)  
 
 ---
-
+<!--
 ## 👨‍💻 Team Fine Shyt  
 
 | Name               | Roll Number     | Role                     |
@@ -53,6 +53,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - **Project Guide:** Avishek Banerjee  
 
 ---
+-->
 
 ## ⚙️ Planned Features  
 - 🔐 User Authentication & Authorization (JWT)  
@@ -101,7 +102,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - `DELETE /api/admin/users/{id}` → Delete user  
 
 ---
-<!-- here we will update the details of features implemented with the date to keep a track of the whole project -->
+<!-- here we will update the details of features implemented with the date to keep a track of the whole project 
 ## 🚀 Current Status  
 🔹 Repository initialized: **blank setup only**  
 🔹 Implementation will begin shortly with **step-by-step integration** of backend, frontend, and AI components.  
@@ -120,5 +121,8 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 ## 📜 License  
 This project is developed as part of **Final Year Major Project** under the guidance of **Avishek Banerjee**.  
 © 2025 Team Fine Shyt. All Rights Reserved.  
-
+-->
+## 📜 License  
+This project is developed as part of **Final Year Major Project**.  
+© 2025 Team Fine Shyt. All Rights Reserved.  
 ---
