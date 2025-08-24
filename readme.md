@@ -101,7 +101,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - `DELETE /api/admin/products/{id}` → Delete product  
 - `DELETE /api/admin/users/{id}` → Delete user   -->
 
----
+<!-- --- -->
 <!-- here we will update the details of features implemented with the date to keep a track of the whole project 
 ## 🚀 Current Status  
 🔹 Repository initialized: **blank setup only**  
