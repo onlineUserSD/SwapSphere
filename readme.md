@@ -1,4 +1,4 @@
-# SwapSphere – C2C Product Exchange Platform with AI-Powered Recommendation  
+<!-- # SwapSphere – C2C Product Exchange Platform with AI-Powered Recommendation  
 
 🚀 **SwapSphere** is a Consumer-to-Consumer (C2C) model product exchange platform that allows users to **list, exchange, and discover products** seamlessly.  
 The platform is enhanced with an **AI-powered recommendation engine**, suggesting relevant products based on user preferences and activity.  
@@ -34,7 +34,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - Python  
 - Flask API (Recommendation System)  
 
----
+--- -->
 <!--
 ## 👨‍💻 Team Fine Shyt  
 
@@ -55,7 +55,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 ---
 -->
 
-## ⚙️ Planned Features  
+<!-- ## ⚙️ Planned Features  
 - 🔐 User Authentication & Authorization (JWT)  
 - 📦 Product Listing & Management  
 - 🔄 Product Exchange between users  
@@ -99,7 +99,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 - `GET /api/admin/users` → List all users  
 - `GET /api/admin/interactions` → List all interactions  
 - `DELETE /api/admin/products/{id}` → Delete product  
-- `DELETE /api/admin/users/{id}` → Delete user  
+- `DELETE /api/admin/users/{id}` → Delete user   -->
 
 ---
 <!-- here we will update the details of features implemented with the date to keep a track of the whole project 
@@ -122,7 +122,7 @@ The platform is enhanced with an **AI-powered recommendation engine**, suggestin
 This project is developed as part of **Final Year Major Project** under the guidance of **Avishek Banerjee**.  
 © 2025 Team Fine Shyt. All Rights Reserved.  
 -->
-## 📜 License  
+<!-- ## 📜 License  
 This project is developed as part of **Final Year Major Project**.  
 © 2025 Team Fine Shyt. All Rights Reserved.  
----
+--- -->
