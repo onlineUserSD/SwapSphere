@@ -1,0 +1,37 @@
+### Register
+POST http://localhost:1111/api/auth/register
+Content-Type: application/json
+
+{
+    "name" : "Karan",
+    "email" : "kkn2k19@gmail.com",
+    "phone" : "1112223330",
+    "password" : "Karan@123",
+    "confirmPassword" : "Karan@123",
+    "addressLine1" : "LoharBarwa Barwadda",
+    "addressLine2" : "Tundi Road",
+    "city" : "Dhanbad",
+    "state" : "Jharkhand",
+    "pincode" : "826004",
+    "role" : "ADMIN"
+}
+
+# User registered successfully
+# but here we registered without email verification service so there will be no otp sent to this email 
+# let's try to login it - will it login or not ?? without verification ??
+
+
+### Login 
+POST http://localhost:1111/api/auth/login
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "password" : "Karan@123"
+}
+
+# Please verify your email before logging in.
+# here it is not getting log in without otp email verification 
+# since we didnt had made otp send service now 
+# and we cant re-register this email and user again so we will use the resend otp from email services when implemented 
+# then verify it and try to login
