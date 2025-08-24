@@ -52,8 +52,7 @@ public class UserAuthService {
         user.setState(request.getState());
         user.setPincode(request.getPincode());
 
-        user.setEnabled(false); // login disable until email verified with otp -- true for verified account and
-                                // false for not verified account
+        user.setEnabled(false); // login disable until email verified with otp -- true for verified account and false for not verified account
         urepo.save(user);
 
         return "User registered successfully";
