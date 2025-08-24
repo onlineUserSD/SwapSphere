@@ -1,8 +1,8 @@
-<!-- # SwapSphere – C2C Product Exchange Platform with AI-Powered Recommendation  
+ # SwapSphere – C2C Product Exchange Platform with AI-Powered Recommendation  
 
 🚀 **SwapSphere** is a Consumer-to-Consumer (C2C) model product exchange platform that allows users to **list, exchange, and discover products** seamlessly.  
 The platform is enhanced with an **AI-powered recommendation engine**, suggesting relevant products based on user preferences and activity.  
-
+<!--
 ---
 
 ## 📌 Project Overview  
