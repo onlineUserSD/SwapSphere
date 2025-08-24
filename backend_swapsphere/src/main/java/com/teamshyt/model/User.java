@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,6 +29,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role; // ADMIN / USER
 
     @Column(nullable = false, length = 50)
     private String name;
@@ -60,5 +65,10 @@ public class User {
 
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    private boolean enabled = true; // default true for existing users; new registrations will set false
+    // // this will state that user will not be able to login until they verify
+    // email with otp
+    // only verified users will be able be able to login to site
 
 }
