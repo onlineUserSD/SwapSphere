@@ -5,11 +5,15 @@ import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.teamshyt.dto.EmailVerifyRequest;
+import com.teamshyt.dto.ForgotPassRequest;
 import com.teamshyt.dto.JWTResponse;
 import com.teamshyt.dto.LoginRequest;
 import com.teamshyt.dto.RegisterRequest;
+import com.teamshyt.dto.ResetPassRequest;
 import com.teamshyt.model.User;
 import com.teamshyt.model.UserRole;
+import com.teamshyt.model.VerificationType;
 import com.teamshyt.repo.UserRepository;
 import com.teamshyt.security.JwtUtil;
 
@@ -19,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserAuthService {
     private final UserRepository urepo;
+    private final EmailService emailService;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 
@@ -53,7 +58,8 @@ public class UserAuthService {
         user.setState(request.getState());
         user.setPincode(request.getPincode());
 
-        user.setEnabled(false); // login disable until email verified with otp -- true for verified account and false for not verified account
+        user.setEnabled(false); // login disable until email verified with otp -- true for verified account and
+                                // false for not verified account
         urepo.save(user);
 
         return "User registered successfully";
@@ -79,5 +85,50 @@ public class UserAuthService {
                 .token(token)
                 .role(user.getRole().name())
                 .build();
+    }
+
+    // verify email with otp
+    public String verifyEmail(EmailVerifyRequest request) {
+        boolean isValidOtp = emailService.validateOtp(request.getEmail(), request.getOtp(), VerificationType.VERIFY);
+        if (!isValidOtp) {
+            throw new RuntimeException("Invalid/expired OTP");
+        }
+
+        User user = urepo.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("user not found"));
+
+        user.setEnabled(true);
+        urepo.save(user);
+
+        return "Email verified successfully. You can now login.";
+    }
+
+    // forgot password
+    public String forgotPassword(ForgotPassRequest request) {
+        Optional<User> userOptional = urepo.findByEmail(request.getEmail());
+
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("No user with given email");
+        }
+        emailService.createAndSendOtp(request.getEmail(), VerificationType.RESET);
+
+        return "Password reset OTP sent to your email.";
+    }
+
+    // reset password with OTP
+    public String resetPassword(ResetPassRequest request) {
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new RuntimeException("Passwords do not match.");
+        }
+
+        boolean isValidOtp = emailService.validateOtp(request.getEmail(), request.getOtp(), VerificationType.RESET);
+
+        if (!isValidOtp) {
+            throw new RuntimeException("Invalid/expired OTP");
+        }
+
+        User user = urepo.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("user not found"));
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        urepo.save(user);
+        return "Password reset successful. You can now login with new password.";
     }
 }
