@@ -28,6 +28,6 @@ public interface EmailRepository extends JpaRepository<Email, Long> {
 
     @Modifying // this annotation used when delete or update queries written
     @Transactional
-    @Query("DELETE FROM EmailVerification AS e WHERE e.expiryTime < :now OR e.consumed = true")
+    @Query("DELETE FROM Email AS e WHERE e.expiryTime < :now OR e.consumed = true")
     public void deleteExpiredorConsumed(@Param("now") LocalDateTime now);
 }
