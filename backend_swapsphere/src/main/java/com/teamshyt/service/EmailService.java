@@ -23,13 +23,13 @@ public class EmailService {
         this.emailRepository = emailRepository;
     }
 
-    @Value("${OTP_LENGTH}")
+    @Value("${app.otp.length}")
     private int otpLength;
 
-    @Value("${OTP_EXPIRY}")
+    @Value("${app.otp.expiry.minutes}")
     private int otpExpiryMinutes;
 
-    @Value("${OTP_RESEND_GAP_IN_SECONDS}")
+    @Value("${otp.resend.interval}")
     private long otpResendGapinSeconds;
 
     public String generateOtp() {

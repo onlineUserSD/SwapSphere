@@ -2,11 +2,14 @@ package com.teamshyt.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 // import lombok.Builder;
 import lombok.Getter;
@@ -39,8 +42,14 @@ public class Email {
     @Column(nullable = false)
     private VerificationType type; // Verify or Reset -- since verify for email verification and reset for pass reset
 
-    @Column(nullable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false, nullable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();  // this will add a new column in table and will also store default for already present records
+    }
 
     private boolean consumed = false;// otp will be only used for once - when it is used it will mark true for consumed
 }

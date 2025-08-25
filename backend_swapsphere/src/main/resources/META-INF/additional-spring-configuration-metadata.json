@@ -18,5 +18,10 @@
     "name": "app.otp.expiry.minutes",
     "type": "java.lang.String",
     "description": "A description for 'app.otp.expiry.minutes'"
+  },
+  {
+    "name": "otp.resend.interval",
+    "type": "java.lang.String",
+    "description": "A description for 'otp.resend.interval'"
   }
 ]}

@@ -123,3 +123,28 @@ Content-Type: application/json
 #  so from now onwards everytime a otp is created it will be given a createdAt time stamp to track it 
 # so we need to modify the current Email model and add a field createdAt which will store LocalDateTime.now()
 
+# lets try resending within time gap
+### Resend
+POST http://localhost:1111/api/auth/resend-otp
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "type" : "VERIFY"
+}
+
+# OTP resent successfully.
+# Date: Mon, 25 Aug 2025 21:40:32 GMT
+
+### Resend
+POST http://localhost:1111/api/auth/resend-otp
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "type" : "VERIFY"
+}
+
+# Date: Mon, 25 Aug 2025 21:40:44 GMT
+
+# Please wait before requesting a new OTP. Try again after 60 seconds.
