@@ -1,6 +1,7 @@
 package com.teamshyt.service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -49,5 +50,29 @@ public class EmailService {
 
         String subject = (type == VerificationType.VERIFY) ? "Verify Your Email" : "Password reset code";
         emailOTPSendService.sendOtp(email, subject, otp);
+    }
+
+    @Transactional
+    public boolean validateOtp(String email, String otp, VerificationType type) {
+        Optional<Email> optional = emailRepository.findFirstByEmailAndTypeOrderByExpiryTimeDesc(email, type);
+
+        if (optional.isEmpty())
+            return false;
+
+        Email emailObject = optional.get();
+        if (emailObject.isConsumed())
+            return false;
+        if (emailObject.getExpiryTime().isBefore(LocalDateTime.now()))
+            return false;
+        if (!emailObject.getOtp().equals(otp))
+            return false;
+        emailObject.setConsumed(true); // mark consumed - otp used
+        emailRepository.save(emailObject);
+        return true;
+    }
+
+    @Transactional
+    public void resendOtp(String email, VerificationType type) {
+        createAndSendOtp(email, type);
     }
 }
