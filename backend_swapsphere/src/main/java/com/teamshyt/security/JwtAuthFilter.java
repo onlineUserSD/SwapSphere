@@ -1,4 +1,4 @@
-package com.teamshyt.service;
+package com.teamshyt.security;
 
 import java.io.IOException;
 import java.util.List;

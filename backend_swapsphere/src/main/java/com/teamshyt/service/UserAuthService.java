@@ -11,6 +11,7 @@ import com.teamshyt.dto.RegisterRequest;
 import com.teamshyt.model.User;
 import com.teamshyt.model.UserRole;
 import com.teamshyt.repo.UserRepository;
+import com.teamshyt.security.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 

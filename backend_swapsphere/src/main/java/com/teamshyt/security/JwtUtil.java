@@ -1,4 +1,4 @@
-package com.teamshyt.service;
+package com.teamshyt.security;
 
 import java.security.Key;
 import java.util.Date;
