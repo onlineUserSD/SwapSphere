@@ -17,11 +17,15 @@ public class EmailOTPSendService {
     }
 
     public void sendOtp(String to, String subject, String otp) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(to);
-        msg.setSubject(subject);
-        msg.setText("Your Verification code is : " + otp + "\nThis code is valid for " + otpExpiryMinutes
-                + " minutes only.");
-        javaMailSender.send(msg);
+        try {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(to);
+            msg.setSubject(subject);
+            msg.setText("Your Verification code is : " + otp + "\nThis code is valid for " + otpExpiryMinutes
+                    + " minutes only.");
+            javaMailSender.send(msg);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Failed to send OTP email", e);
+        }
     }
 }
