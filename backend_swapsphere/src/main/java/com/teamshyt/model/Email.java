@@ -39,5 +39,8 @@ public class Email {
     @Column(nullable = false)
     private VerificationType type; // Verify or Reset -- since verify for email verification and reset for pass reset
 
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
     private boolean consumed = false;// otp will be only used for once - when it is used it will mark true for consumed
 }
