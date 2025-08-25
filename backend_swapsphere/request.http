@@ -35,3 +35,91 @@ Content-Type: application/json
 # since we didnt had made otp send service now 
 # and we cant re-register this email and user again so we will use the resend otp from email services when implemented 
 # then verify it and try to login
+
+
+### OTP RESEND
+POST http://localhost:1111/api/auth/resend-otp
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "type" : "VERIFY"
+}
+
+# OTP resent successfully.
+# now lets verify it and try to login
+
+### Verify 
+POST http://localhost:1111/api/auth/verify-email
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "otp" : "5326"
+}
+
+# Email verified successfully. You can now login.
+
+# now lets try to login
+### Login 
+POST http://localhost:1111/api/auth/login
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "password" : "Karan@123"
+}
+
+# {
+#   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJra24yazE5QGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1NjE1NDMyOCwiZXhwIjoxNzU2MjQwNzI4fQ.UHZWKzME9QrixXwX10z_3nBLeEs5eQ0qJgo0R0tmQeg",
+#   "role": "ADMIN"
+# }
+# yes it got login after email otp verification
+
+#  now suppose this user forgot his current pass - lets change or reset using otp method
+### Forgot Password
+POST http://localhost:1111/api/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "kkn2k19@gmail.com"
+}
+
+# Password reset OTP sent to your email.
+#we got the otp let's use it to reset a new password
+
+### Reset Password
+POST http://localhost:1111/api/auth/reset-password
+Content-Type: application/json
+
+{
+  "email": "kkn2k19@gmail.com",
+  "otp": "4103",
+  "newPassword": "Karan@321",
+  "confirmPassword": "Karan@321"
+}
+
+# Password reset successful. You can now login with new password.
+
+# lets login using this new password
+
+### Login 
+POST http://localhost:1111/api/auth/login
+Content-Type: application/json
+
+{
+    "email" : "kkn2k19@gmail.com",
+    "password" : "Karan@321"
+}
+
+# {
+#   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJra24yazE5QGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1NjE1NDYxMywiZXhwIjoxNzU2MjQxMDEzfQ.WoHgnqCWNSjpJjtL5FrXS2FzNtPqte4UN3_zUKgqVuU",
+#   "role": "ADMIN"
+# }
+# it worked 
+# now theres a problem in our otp system 
+# suppose a user continuously tries to resend otp and it will fill our DB after some time 
+#  so we need to fix a time gap between otp resend option in the resend method
+#  so from now onwards everytime a otp is created it will be given a createdAt time stamp to track it 
+# so we need to modify the current Email model and add a field createdAt which will store LocalDateTime.now()
+
