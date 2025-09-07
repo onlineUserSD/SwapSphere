@@ -37,7 +37,7 @@ Content-Type: application/json
 # then verify it and try to login
 
 
-### OTP RESEND --- 
+### OTP RESEND -- 
 POST http://localhost:1111/api/auth/resend-otp
 Content-Type: application/json
 
