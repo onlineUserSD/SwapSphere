@@ -18,4 +18,5 @@ public class Category {
     private String category_name;  //Products will be divided into categories like CLOTHES,ELECTRONICS,
     // SPORTS,SHOES etc (will be updated later with more details).
 
+   private String details;
 }
