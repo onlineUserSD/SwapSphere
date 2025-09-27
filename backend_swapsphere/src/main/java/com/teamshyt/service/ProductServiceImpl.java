@@ -81,18 +81,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponse> getProductByUser(User user) {
-
-        if(user == null)return List.of();
-
-        List<Product> products = productRepository.findByOwner(user);
-
-        if(products.isEmpty())return List.of();
-
+    public List<ProductResponse> getProductByUser(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                ()-> new RuntimeException("User not found with id : "+userId)
+        );
+        List<Product>products = productRepository.findByOwner(user);
         return products.stream()
                 .map(ProductMapper::toProductResponse)
                 .toList();
     }
+
+//    @Override
+//    public List<ProductResponse> getProductByUser(User user) {
+//
+//        if(user == null)return List.of();
+//
+//        List<Product> products = productRepository.findByOwner(user);
+//
+//        if(products.isEmpty())return List.of();
+//
+//        return products.stream()
+//                .map(ProductMapper::toProductResponse)
+//                .toList();
+//    }
 
     @Override
     public List<ProductResponse> getAllProduct() {
