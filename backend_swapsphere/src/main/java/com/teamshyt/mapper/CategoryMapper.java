@@ -7,7 +7,7 @@ import com.teamshyt.model.Category;
 public class CategoryMapper {
     public static Category toCategoryEntity(CategoryRequest request){
         return Category.builder()
-                .category_name(request.getName())
+                .categoryName(request.getName())
                 .details(request.getDetails())
                 .build();
     }
@@ -15,7 +15,7 @@ public class CategoryMapper {
     public static CategoryResponse toCategoryResponse(Category category){
         return CategoryResponse.builder()
                 .id(category.getId())
-                .name(category.getCategory_name())
+                .name(category.getCategoryName())
                 .details(category.getDetails())
                 .build();
     }

@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService{
     private final CategoryRepository categoryRepository;
     @Override
     public CategoryResponse createCategory(CategoryRequest request) {
-        if(categoryRepository.existByName(request.getName())){
+        if(categoryRepository.existsByCategoryName(request.getName())){
             throw new RuntimeException("Category Already exist with name"+ request.getName());
         }
         Category category = CategoryMapper.toCategoryEntity(request);
@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService{
     public CategoryResponse updateCategory(Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id).orElseThrow(()->
                 new RuntimeException("Category not found with ID : "+id));
-        category.setCategory_name(request.getName());
+        category.setCategoryName(request.getName());
         category.setDetails(request.getDetails());
 
         Category newCategory = categoryRepository.save(category);
